@@ -4,13 +4,11 @@ const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-unde
 
 async function ingestTweets(key, secret, bearer){
 	return new Promise(function(resolve, reject){
-		
 		var client = new Twitter({
 			consumer_key: key,
 			consumer_secret: secret,
 			bearer_token: bearer
 		});
-
 		client.get('search/tweets', {q: 'covid'}, function(error, tweets, response) {
 			resolve(tweets.statuses);
 		});
@@ -93,7 +91,6 @@ async function twitterSentimentAction() {
 	TWITTER_KEY = 'jL9ufYzLGl6ezNygFGhts4uif'
 	TWITTER_SECRET = 'eqsQuOxClzrTjmEQcxtXbPkBVD4XrjM3EkYNqgsEcr53mzB3Xl'
 	TWITTER_BEARER = 'AAAAAAAAAAAAAAAAAAAAAHwMDwEAAAAAj5283nyjyrK%2BXzu5F01p%2Fx0b104%3DjCVTTywiqnH8C7XMqe60fEeXvaJbnpyoUOs140fLhIUutEgLsa'
-	IBM_SENTIMENT_ENDPOINT = ''
 
 	const tweets = await ingestTweets(TWITTER_KEY, TWITTER_SECRET, TWITTER_BEARER);
 	const parsedTweets = parseTweets(tweets);
